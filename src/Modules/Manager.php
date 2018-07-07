@@ -58,13 +58,13 @@ class Manager
 
                     $module = new Module();
 
-                    $module->namespace($data['namespace']);
+                    $module->namespace(array_key_exists('namespace', $data) ? $data['namespace'] : null);
                     $module->identifier($data['identifier']);
-                    $module->name($data['name']);
-                    $module->status($data['status']);
-                    $module->description($data['description']);
+                    $module->name(array_key_exists('name', $data) ? $data['name'] : null);
+                    $module->status(array_key_exists('status', $data) ? $data['status'] : null);
+                    $module->description(array_key_exists('description', $data) ? $data['description'] : null);
                     $module->basePath($iterator->getPath());
-                    $module->publishedTags($data['published_tags'] ?? []);
+                    $module->publishedTags(array_key_exists('published_tags', $data) ? $data['published_tags'] : []);
 
                     $composerLoader = require base_path('vendor/autoload.php');
                     if (strtolower($module->status()) == 'enabled') {
